@@ -3,7 +3,7 @@ import styles from './AddTask.module.css';
 import { Task } from '../types/Task';
 
 interface AddTaskProps {
-  onAddTask: (task: Task) => void;
+  onAddTask: (task: Omit<Task, 'id'>) => void; 
 }
 
 const AddTask = ({ onAddTask }: AddTaskProps) => {
@@ -13,12 +13,14 @@ const AddTask = ({ onAddTask }: AddTaskProps) => {
   const [priority, setPriority] = useState<'Low' | 'Medium' | 'High'>('Low');
 
   const handleSubmit = () => {
-    onAddTask({
+    const newTask = {
       name,
       description,
       status,
       priority,
-    });
+    };
+
+    onAddTask(newTask);
     setName('');
     setDescription('');
     setStatus('Pending');
@@ -28,26 +30,40 @@ const AddTask = ({ onAddTask }: AddTaskProps) => {
   return (
     <div className={styles.addTask}>
       <input
+        className={styles.addTaskInput}
         placeholder="שם משימה"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <select name="status" value={status} onChange={(e) => setStatus(e.target.value as 'Pending' | 'InProgress' | 'Completed')}>
+      <select
+        className={styles.addTaskInput}
+        name="status"
+        value={status}
+        onChange={(e) => setStatus(e.target.value as 'Pending' | 'InProgress' | 'Completed')}
+      >
         <option value="Pending">Pending</option>
         <option value="InProgress">In Progress</option>
         <option value="Completed">Completed</option>
       </select>
-      <select name="priority" value={priority} onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}>
+      <select
+        className={styles.addTaskInput}
+        name="priority"
+        value={priority}
+        onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}
+      >
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
       <textarea
+        className={styles.addTaskInput}
         placeholder="תיאור"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button onClick={handleSubmit}>הוסף משימה</button>
+      <button className={styles.addTaskButton} onClick={handleSubmit}>
+        הוסף משימה
+      </button>
     </div>
   );
 };

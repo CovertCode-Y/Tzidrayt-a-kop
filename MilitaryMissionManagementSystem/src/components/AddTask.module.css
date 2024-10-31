@@ -5,7 +5,26 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 150px;
+    height: 180px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.addTaskInput{
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+}
+
+.addTaskButton{
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    background-color: rgb(185, 0, 0);
+    color: white;
+    cursor: pointer;
+}
+
+

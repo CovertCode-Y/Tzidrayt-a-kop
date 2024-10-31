@@ -2,7 +2,7 @@ import axios from "axios";
 import { Task } from "../types/Task";
 
 const BASE_URL = "https://reactexambackend.onrender.com";
-const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY =1234321234
 
 export const fetchTasks = async (): Promise<Task[]> => {
   const response = await axios.get(`${BASE_URL}/missions/${API_KEY}`);
